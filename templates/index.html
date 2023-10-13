@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Bienvenidx al sistema de Valoración Automatica de Viviendas en Madrid</h1>
+    </header>
+    <main>
+        <p>Valora la vivienda de Media Estancia</p>
+    <a href="{{ url_for('form') }}" class="btn">Comenzar</a>
+    </main>
+</body>
+</html>
