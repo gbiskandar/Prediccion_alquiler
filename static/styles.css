@@ -1,0 +1,57 @@
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 3em;
+    margin-top: 2em;
+}
+
+p {
+    font-size: 1.5em;
+    margin-top: 1em;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #626fff;
+    color: #fff;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 0.5em;
+    margin-top: 2em;
+    font-size: 1.5em;
+}
+
+.btn:hover {
+    background-color: #5c5f85;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 5em auto; /* Adjust the top margin */    
+    padding: 1em;
+    background-color: #2a2a2a;
+    border-radius: 0.5em;
+}
+
+.form-container label,
+.form-container input {
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 0.5em;  /* Add some space below labels */
+}
+/* Style for the <select> dropdown */
+select {
+    font-size: 1.1em;
+    display: block;
+    margin-top: 1em;
+}
