@@ -4,7 +4,7 @@ from predict import query, estimacion, fiability
 from constants import *
 
 app = Flask(__name__)
-CORS(app)  # Habilita CORS para todas las origenes y rutas
+CORS(app, resources={r"/api/*": {"origins": "*"}})  # Habilita CORS para todas las origenes y rutas
 
 #ruta para la pagina principal
 @app.route('/')
