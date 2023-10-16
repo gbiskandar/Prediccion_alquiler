@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from predict import query, estimacion
+from flask_cors import CORS
+from predict import query, estimacion, fiability
 from constants import *
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})  # Habilita CORS para todas las origenes y rutas
 
 #ruta para la pagina principal
 @app.route('/')
@@ -32,25 +34,38 @@ def form():
 
 @app.route('/api/predict', methods=['POST'])
 def api_predict():
-    data = request.get_json()
+    try:
+        data = request.get_json()
     
-    # Extraer detalles del JSON recibido
-    tipo = data['tipo']
-    distrito = data['distrito']
-    barrio = data['barrio']
-    hab = data['hab']
-    banos = data['banos']
-    area = data['area']
-    furnished = data['furnished']
+        # Verificando que los parametros esperados estan en el JSON recibido
+        expected_params = ['tipo', 'distrito', 'barrio', 'hab', 'banos', 'area', 'furnished']
+        for param in expected_params:
+            if param not in data:
+                return jsonify({'error': f'Parametro {param} recibido no previsto'}), 40
 
-    # Se pasa la solicitud de full stack por la funcion de query para conseguir la solicitud encoded
-    solicitud = query(tipo, distrito, barrio, hab, banos, area, furnished)
-    
-    # Obtener la valoracion
-    prediction = estimacion(solicitud)
+        # Extraer detalles del JSON recibido
+        tipo = data['tipo']
+        distrito = data['distrito']
+        barrio = data['barrio']
+        hab = data['hab']
+        banos = data['banos']
+        area = data['area']
+        furnished = data['furnished']
 
-    # Return la valoracion del modelo en JSON
-    return jsonify({'prediction': prediction})
+        # Se pasa la solicitud de full stack por la funcion de query para conseguir la solicitud encoded
+        solicitud = query(tipo, distrito, barrio, hab, banos, area, furnished)
+        
+        # Obtener la valoracion
+        prediction = estimacion(solicitud)
+        fiabilidad = fiability(distrito)
+
+        # Return la valoracion del modelo en JSON
+        return jsonify({'prediction': prediction,
+                        'fiabilidad' : fiabilidad})
+
+    except Exception as e:
+            # Handle general errors
+            return jsonify({'error': f'An error occurred: {str(e)}'}), 500
 
 @app.errorhandler(404)
 def page_not_found(e):
