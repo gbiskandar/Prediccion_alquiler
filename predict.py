@@ -47,11 +47,11 @@ def estimacion(encoded_solicitud): # Usar la encoded solicitud para hacer la est
     """
 
     # Predecir el precio de renta para el nuevo_listing
-    predicted_price = round(rf_regressor.predict([list(encoded_solicitud.values())])[0])
+    predicted_price = rf_regressor.predict([list(encoded_solicitud.values())])[0].round(2)
 
     #Un pequeño delay en el calculo
-    # time_to_sleep = rng.uniform(1, 3)
-    # sleep(time_to_sleep)
+    time_to_sleep = rng.uniform(1, 3)
+    sleep(time_to_sleep)
 
     return predicted_price
 
