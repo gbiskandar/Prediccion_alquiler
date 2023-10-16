@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_cors import CORS
-from predict import query, estimacion
+from predict import query, estimacion, fiability
 from constants import *
 
 app = Flask(__name__)
@@ -57,9 +57,11 @@ def api_predict():
         
         # Obtener la valoracion
         prediction = estimacion(solicitud)
+        fiabilidad = fiability(distrito)
 
         # Return la valoracion del modelo en JSON
-        return jsonify({'prediction': prediction})
+        return jsonify({'prediction': prediction,
+                        'fiabilidad' : fiabilidad})
 
     except Exception as e:
             # Handle general errors
