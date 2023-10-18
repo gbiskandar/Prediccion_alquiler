@@ -53,18 +53,18 @@ def estimacion(encoded_solicitud, area): # Usar la encoded solicitud para hacer 
     # Evaluar el precio por m2 de la prediccion y aplicar un ajuste si esta prediciendo al alza (identificar y modificar outliers)
     pred_m2 = predicted_price / area
     if pred_m2 > 50:
-        predicted_price = predicted_price * .75
+        predicted_price = int(predicted_price * .75)
     elif 40 < pred_m2 < 50:
-        predicted_price = predicted_price * .8
+       predicted_price = int(predicted_price * .8)
     elif 30 < pred_m2 < 40:
-        predicted_price = predicted_price * .9
+        predicted_price = int(predicted_price * .9)
     else:
         predicted_price
         
     #Un pequeño delay en el calculo
     time_to_sleep = rng.uniform(1, 3)
     sleep(time_to_sleep)
-
+    
     return predicted_price
 
 def query(tipo, distrito, barrio, hab, banos, area, furnished):
