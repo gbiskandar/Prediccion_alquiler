@@ -65,7 +65,7 @@ body {
             <option value="Ático">Ático</option>
             <option value="Dúplex">Dúplex</option>
             <option value="Piso">Piso</option>
-
+            <option value="Chalet">Chalet</option>
         </select>
         
         <label for="distrito">Distrito:</label>
@@ -86,6 +86,11 @@ body {
         <label for="muebles">¿Amueblado?</label>
         <input type="radio" id="muebles_yes" name="muebles" value="1" required> Si
         <input type="radio" id="muebles_no" name="muebles" value="0"> No
+
+        <label for="condicion">¿Condicion?</label>
+        <input type="radio" id="condicion-normal" name="condicion" value="normal" required> Normal
+        <input type="radio" id="condicion-alta" name="condicion" value="alta-calidad"> Alta Calidad
+        <input type="radio" id="condicion-lujo" name="condicion" value="lujosa"> Lujosa
         
         <input type="submit" value="Analizar">
     </form>

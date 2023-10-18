@@ -22,14 +22,16 @@ def form():
         banos = int(request.form['banos'])
         area = float(request.form['area'])
         furnished = request.form['muebles']
+        condicion = request.form['condicion']
 
         # Se pasa la solicitud del usuario por la funcion de query para conseguir la solicitud encoded
         solicitud = query(tipo, distrito, barrio, hab, banos, area, furnished)
     
         # Proceder con la valoracion en base a la solicitud del usuario
         prediction = estimacion(solicitud)
+        fiabilidad = fiability(distrito, condicion)
 
-        return render_template('prediction.html', prediction=prediction)
+        return render_template('prediction.html', prediction=prediction, fiabilidad=fiabilidad)
     return render_template('form.html')
 
 @app.route('/api/predict', methods=['POST'])
@@ -38,7 +40,7 @@ def api_predict():
         data = request.get_json()
     
         # Verificando que los parametros esperados estan en el JSON recibido
-        expected_params = ['tipo', 'distrito', 'barrio', 'hab', 'banos', 'area', 'furnished']
+        expected_params = ['tipo', 'distrito', 'barrio', 'hab', 'banos', 'area', 'furnished' , 'condicion']
         for param in expected_params:
             if param not in data:
                 return jsonify({'error': f'Parametro {param} recibido no previsto'}), 40
@@ -51,13 +53,14 @@ def api_predict():
         banos = data['banos']
         area = data['area']
         furnished = data['furnished']
+        condicion = data['condicion']
 
         # Se pasa la solicitud de full stack por la funcion de query para conseguir la solicitud encoded
         solicitud = query(tipo, distrito, barrio, hab, banos, area, furnished)
         
         # Obtener la valoracion
         prediction = estimacion(solicitud)
-        fiabilidad = fiability(distrito)
+        fiabilidad = fiability(distrito, condicion)
 
         # Return la valoracion del modelo en JSON
         return jsonify({'prediction': prediction,

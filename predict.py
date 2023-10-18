@@ -1,6 +1,7 @@
 import pickle
 from constants import label_to_encoded, rng, sleep, Registros_por_Distrito
 from sklearn.ensemble import RandomForestRegressor
+import numpy as np
 
 # Cargar modelo desde el archivo pickle
 with open("RF_modelo_entrenado.pkl", 'rb') as file:
@@ -47,7 +48,7 @@ def estimacion(encoded_solicitud): # Usar la encoded solicitud para hacer la est
     """
 
     # Predecir el precio de renta para el nuevo_listing
-    predicted_price = rf_regressor.predict([list(encoded_solicitud.values())])[0].round(2)
+    predicted_price = int(np.around(rf_regressor.predict([list(encoded_solicitud.values())])[0], -1))
 
     #Un pequeño delay en el calculo
     time_to_sleep = rng.uniform(1, 3)
@@ -95,7 +96,7 @@ def query(tipo, distrito, barrio, hab, banos, area, furnished):
 
     return encoded_solicitud   
 
-def fiability(distrito):
+def fiability(distrito, condicion):
     """
     Revisar el numero de registros de viviendas en el distrito solicitado en el query para dar una metrica
     de fiabilidad del modelo.
@@ -110,9 +111,10 @@ def fiability(distrito):
     """
     # Revisar numero de registros en el distrito del query
     number = Registros_por_Distrito[distrito]
+
     if number >= 1000:
-        return "Fiabilidad Alta. {} viviendas media estancia en Distrito: {}".format(number, distrito)
+        return "Fiabilidad Alta"
     elif 300 < number < 1000:
-        return "Fiabilidad Media. {} viviendas media estancia en Distrito: {}".format(number, distrito)
+        return "Fiabilidad Media"
     elif number < 300:
-        return "Fiabilidad Baja. {} viviendas media estancia en Distrito: {}".format(number, distrito)
+        return "Fiabilidad Baja"
