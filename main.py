@@ -28,8 +28,8 @@ def form():
         solicitud = query(tipo, distrito, barrio, hab, banos, area, furnished)
     
         # Proceder con la valoracion en base a la solicitud del usuario
-        prediction = estimacion(solicitud)
-        fiabilidad = fiability(distrito, condicion)
+        prediction = estimacion(solicitud, area)
+        fiabilidad = fiability(distrito, condicion, area, prediction)
 
         return render_template('prediction.html', prediction=prediction, fiabilidad=fiabilidad)
     return render_template('form.html')
@@ -59,8 +59,8 @@ def api_predict():
         solicitud = query(tipo, distrito, barrio, hab, banos, area, furnished)
         
         # Obtener la valoracion
-        prediction = estimacion(solicitud)
-        fiabilidad = fiability(distrito, condicion)
+        prediction = estimacion(solicitud, area)
+        fiabilidad = fiability(distrito, condicion, area, prediction)
 
         # Return la valoracion del modelo en JSON
         return jsonify({'prediction': prediction,

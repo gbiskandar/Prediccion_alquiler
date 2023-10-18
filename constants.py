@@ -397,3 +397,7 @@ Registros_por_Distrito = {
     'Villa de Vallecas' : 40,
     'Villaverde' : 87,
 }
+
+Distritos1 = ['Barajas', 'Carabanchel', 'Fuencarral' , 'Hortaleza', 'Latina', 'Moratalaz', 'Puente de Vallecas' , 'San Blas' , 'Usera' , 'Vicálvaro', 'Villa de Vallecas', 'Villaverde' ]
+Distritos2 = ['Arganzuela' , 'Chamartín' , 'Ciudad Lineal' , 'Moncloa' , 'Retiro' , 'Tetuán' ]
+Distritos3 = ['Centro' , 'Chamberí', 'Salamanca' ]
