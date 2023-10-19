@@ -1,6 +1,5 @@
 import pickle
-from constants import label_to_encoded, rng, sleep, Registros_por_Distrito, Distritos1, Distritos2, Distritos3
-from sklearn.ensemble import RandomForestRegressor
+from constants import label_to_encoded, rng, sleep, Distritos1, Distritos2, Distritos3
 import numpy as np
 
 # Cargar modelo desde el archivo pickle
