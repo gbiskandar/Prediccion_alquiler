@@ -1,6 +1,5 @@
 import pickle
 from constants import label_to_encoded, rng, sleep, Registros_por_Distrito
-from sklearn.ensemble import RandomForestRegressor
 
 # Cargar modelo desde el archivo pickle
 with open("RF_modelo_entrenado.pkl", 'rb') as file:
