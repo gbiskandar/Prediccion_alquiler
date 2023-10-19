@@ -52,7 +52,7 @@ Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
 ## Contribuciones
 
-Agradezco a mis colegas de The Bridge Digital Talent Accelerator en Madrid: [Antonio de la Macorra](https://github.com/adlmacorra), Diana Luzuriaga y Alfonso Caballero por sus contribuciones a la elaboracion del proyecto.
+Agradezco a mis colegas de The Bridge Digital Talent Accelerator en Madrid: [Antonio de la Macorra](https://github.com/adlmacorra), [Diana Luzuriaga](https://github.com/Luzuriaga89) y Alfonso Caballero por sus contribuciones a la elaboracion del proyecto.
 
 ## Contacto
 
